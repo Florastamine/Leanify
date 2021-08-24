@@ -10,7 +10,6 @@
 #include "formats/format.h"
 #include "formats/ico.h"
 #include "formats/jpeg.h"
-#include "formats/lua.h"
 #include "formats/mime.h"
 #include "formats/png.h"
 #include "formats/xml.h"
@@ -48,9 +47,6 @@ Format* GetType(void* file_pointer, size_t file_size, const string& filename) {
   } else if (memcmp(file_pointer, Jpeg::header_magic, sizeof(Jpeg::header_magic)) == 0) {
     VerbosePrint("JPEG detected.");
     return new Jpeg(file_pointer, file_size);
-  } else if (memcmp(file_pointer, Lua::header_magic, sizeof(Lua::header_magic)) == 0) {
-    VerbosePrint("Lua detected.");
-    return new Lua(file_pointer, file_size);
   } else if (memcmp(file_pointer, Ico::header_magic, sizeof(Ico::header_magic)) == 0) {
     VerbosePrint("ICO detected.");
     return new Ico(file_pointer, file_size);
